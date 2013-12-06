@@ -35,6 +35,7 @@
     require valid-user
   </Location>
 <% when "basic" -%>
+  RequestHeader unset Authorization
   <Location />
     AuthType basic
     AuthName "Jenkins"

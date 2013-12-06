@@ -36,6 +36,12 @@ apache_module 'proxy'
 apache_module 'proxy_http'
 apache_module 'vhost_alias'
 
+
+if node['jenkins']['http_proxy']['server_auth_method']
+  include_recipe "apache2::mod_auth_basic"
+  include_recipe 'apache2::mod_headers'
+end
+
 if www_redirect || node['jenkins']['http_proxy']['ssl']['redirect_http']
   apache_module 'rewrite'
 end
